@@ -455,7 +455,10 @@
           <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:0.5rem;">Get a Quote</h3>
           <p style="font-size:0.875rem;color:var(--gray-600);margin-bottom:1.5rem;">Tell us about your project.</p>
 
-          <form onsubmit="return handleServiceQuote(event)">
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="2cf7fcd3-9450-4800-9ee0-3f156bcf5277">
+            <input type="hidden" name="subject" value="Contact Form - Touchstone Electrical">
+            <input type="hidden" name="redirect" value="https://touchstoneelectrical.com.au/">
             <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
             <div class="form-group">
               <label>Your Name *</label>
