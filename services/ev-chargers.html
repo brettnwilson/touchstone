@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com; img-src 'self' data:; child-src 'none';">
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com https://formspree.io; img-src 'self' data:; child-src 'none';">
   <title>EV Charger Installation — Touchstone Electrical Services</title>
   <meta name="description"
     content="Professional EV charger installation. Wall-mounted or pedestal units, fully certified for your electric vehicle.">
@@ -439,47 +439,44 @@
           <p style="font-size:0.875rem;color:var(--gray-600);margin-bottom:1.5rem;">Tell us about your vehicle and
             parking setup.</p>
 
-          <form action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="2cf7fcd3-9450-4800-9ee0-3f156bcf5277">
-            <input type="hidden" name="subject" value="Contact Form - Touchstone Electrical">
-            <input type="hidden" name="redirect" value="https://touchstoneelectrical.com.au/">
-            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-            <div class="form-group">
-              <label>Your Name *</label>
-              <input type="text" name="name" required placeholder="John Smith">
-            </div>
-            <div class="form-group">
-              <label>Phone *</label>
-              <input type="tel" name="phone" required placeholder="04XX XXX XXX">
-            </div>
-            <div class="form-group">
-              <label>Postcode *</label>
-              <input type="text" name="postcode" required placeholder="e.g. 2100">
-            </div>
-            <div class="form-group">
-              <label>Vehicle Type *</label>
-              <select name="vehicle_type" required>
-                <option value="">Select vehicle...</option>
-                <option>Tesla Model 3/Y</option>
-                <option>Hyundai Ioniq/Kona Electric</option>
-                <option>MG ZS EV</option>
-                <option>BMW i3/i4</option>
-                <option>Audi e-tron</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Parking Location *</label>
-              <select name="parking_location" required>
-                <option value="">Select...</option>
-                <option>Garage</option>
-                <option>Driveway</option>
-                <option>Carport</option>
-                <option>Street parking</option>
-              </select>
-            </div>
-            <button type="submit" class="form-submit">Request a Quote</button>
-            <p class="form-note">We'll call within 2 hours with options and pricing.</p>
+          <form action="https://formspree.io/f/mdarbkqv" method="POST">
+            <input type="text" name="name" required>
+            <input type="email" name="email" required>
+            <textarea name="message" required></textarea>
+            <button type="submit">Submit Form</button>
+          </form>
+          <div class="form-group">
+            <label>Phone *</label>
+            <input type="tel" name="phone" required placeholder="04XX XXX XXX">
+          </div>
+          <div class="form-group">
+            <label>Postcode *</label>
+            <input type="text" name="postcode" required placeholder="e.g. 2100">
+          </div>
+          <div class="form-group">
+            <label>Vehicle Type *</label>
+            <select name="vehicle_type" required>
+              <option value="">Select vehicle...</option>
+              <option>Tesla Model 3/Y</option>
+              <option>Hyundai Ioniq/Kona Electric</option>
+              <option>MG ZS EV</option>
+              <option>BMW i3/i4</option>
+              <option>Audi e-tron</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Parking Location *</label>
+            <select name="parking_location" required>
+              <option value="">Select...</option>
+              <option>Garage</option>
+              <option>Driveway</option>
+              <option>Carport</option>
+              <option>Street parking</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Request a Quote</button>
+          <p class="form-note">We'll call within 2 hours with options and pricing.</p>
           </form>
         </div>
       </div>

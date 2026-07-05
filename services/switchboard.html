@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com; img-src 'self' data:; child-src 'none';">
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com https://formspree.io; img-src 'self' data:; child-src 'none';">
   <title>Switchboard Upgrades — Touchstone Electrical Services</title>
   <meta name="description"
     content="Professional switchboard upgrades from old fuse boxes to modern, compliant systems with RCD safety protection.">
@@ -399,39 +399,36 @@
           <p style="font-size:0.875rem;color:var(--gray-600);margin-bottom:1.5rem;">Tell us about your switchboard and
             we'll call with a quote.</p>
 
-          <form action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="2cf7fcd3-9450-4800-9ee0-3f156bcf5277">
-            <input type="hidden" name="subject" value="Contact Form - Touchstone Electrical">
-            <input type="hidden" name="redirect" value="https://touchstoneelectrical.com.au/">
-            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-            <div class="form-group">
-              <label>Your Name *</label>
-              <input type="text" name="name" required placeholder="John Smith">
-            </div>
-            <div class="form-group">
-              <label>Phone *</label>
-              <input type="tel" name="phone" required placeholder="04XX XXX XXX">
-            </div>
-            <div class="form-group">
-              <label>Postcode *</label>
-              <input type="text" name="postcode" required placeholder="e.g. 2100">
-            </div>
-            <div class="form-group">
-              <label>Current System *</label>
-              <select name="current_system" required>
-                <option value="">Select type...</option>
-                <option>Old fuse box (pre-1980s)</option>
-                <option>Fuse box (1980s–2000s)</option>
-                <option>Old switchboard (no RCD)</option>
-                <option>Modern switchboard (upgrade/repair)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Any Issues? (optional)</label>
-              <textarea name="message" placeholder="Blowing fuses, won't add circuits, etc."></textarea>
-            </div>
-            <button type="submit" class="form-submit">Request a Quote</button>
-            <p class="form-note">We'll call within 2 hours to discuss.</p>
+          <form action="https://formspree.io/f/mdarbkqv" method="POST">
+            <input type="text" name="name" required>
+            <input type="email" name="email" required>
+            <textarea name="message" required></textarea>
+            <button type="submit">Submit Form</button>
+          </form>
+          <div class="form-group">
+            <label>Phone *</label>
+            <input type="tel" name="phone" required placeholder="04XX XXX XXX">
+          </div>
+          <div class="form-group">
+            <label>Postcode *</label>
+            <input type="text" name="postcode" required placeholder="e.g. 2100">
+          </div>
+          <div class="form-group">
+            <label>Current System *</label>
+            <select name="current_system" required>
+              <option value="">Select type...</option>
+              <option>Old fuse box (pre-1980s)</option>
+              <option>Fuse box (1980s–2000s)</option>
+              <option>Old switchboard (no RCD)</option>
+              <option>Modern switchboard (upgrade/repair)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Any Issues? (optional)</label>
+            <textarea name="message" placeholder="Blowing fuses, won't add circuits, etc."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Request a Quote</button>
+          <p class="form-note">We'll call within 2 hours to discuss.</p>
           </form>
         </div>
       </div>
