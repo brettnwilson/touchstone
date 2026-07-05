@@ -1,6 +1,7 @@
 // shared.js — navigation + footer for all Touchstone pages
 
-const WEB3FORMS_ACCESS_KEY = '2cf7fcd3-9450-4800-9ee0-3f156bcf5277E';
+// Default Formspree endpoint — used for any form that doesn't set its own action="..."
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mdarbkqv';
 
 // Clickjacking protection (Frame-Busting)
 if (window.top !== window.self) {
@@ -149,10 +150,11 @@ function sanitizeForm(formElement) {
   });
 }
 
-// Centralized Asynchronous Form Submission using Web3Forms
+// Centralized Asynchronous Form Submission using Formspree
 async function handleFormSubmit(event, subjectText, successMessage) {
   event.preventDefault();
   const form = event.target;
+  const endpoint = form.getAttribute('action') || FORMSPREE_ENDPOINT;
 
   // Sanitize input fields
   sanitizeForm(form);
@@ -204,14 +206,6 @@ async function handleFormSubmit(event, subjectText, successMessage) {
   const submitButton = form.querySelector('[type="submit"]');
   const originalBtnText = submitButton ? (submitButton.textContent || submitButton.value || 'Submit') : 'Submit';
 
-  // Simulation Mode if Key is left as placeholder
-  if (WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY_HERE' || !WEB3FORMS_ACCESS_KEY) {
-    console.warn('Web3Forms Access Key is not configured. Form submission simulated.');
-    alert(`${successMessage}\n\n[SIMULATION MODE: Set your Web3Forms Access Key in shared.js to receive actual emails]`);
-    form.reset();
-    return false;
-  }
-
   try {
     if (submitButton) {
       submitButton.disabled = true;
@@ -219,22 +213,25 @@ async function handleFormSubmit(event, subjectText, successMessage) {
     }
 
     const formData = new FormData(form);
-    formData.append('access_key', WEB3FORMS_ACCESS_KEY);
-    formData.append('subject', subjectText);
-    formData.append('from_name', 'Touchstone Electrical Website');
+    // Formspree conventions: _subject sets the email subject line,
+    // _replyto tells Formspree which field to use for Reply-To.
+    formData.append('_subject', subjectText);
+    if (!formData.has('_replyto') && formData.has('email')) {
+      formData.append('_replyto', formData.get('email'));
+    }
 
-    const response = await fetch('https://api.web3forms.com/submit', {
+    const response = await fetch(endpoint, {
       method: 'POST',
-      body: formData
+      body: formData,
+      headers: { 'Accept': 'application/json' }
     });
 
-    const result = await response.json();
-
-    if (result.success) {
+    if (response.ok) {
       alert(successMessage);
       form.reset();
     } else {
-      console.error('Web3Forms Submission Error:', result);
+      const result = await response.json().catch(() => ({}));
+      console.error('Formspree Submission Error:', response.status, result);
       alert('Something went wrong. Please try again or call us directly.');
     }
   } catch (error) {
